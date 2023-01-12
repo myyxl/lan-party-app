@@ -20,7 +20,7 @@
       <NuxtLink to="/profile" @click="closeNavigation()">Profil</NuxtLink>
     </div>
     <div class="navigation-item logout">
-      <NuxtLink to="/logout" @click="closeNavigation()">Logout</NuxtLink>
+      <NuxtLink to="/api/auth/logout">Logout</NuxtLink>
     </div>
   </div>
   <div class="menu-icon-container">
@@ -32,18 +32,14 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  methods: {
-    openNavigation() {
-      const sidebar = document.getElementById("side-navigation");
-      if(sidebar) sidebar.style.width = "100%";
-    },
-    closeNavigation() {
-      const sidebar = document.getElementById("side-navigation");
-      if(sidebar) sidebar.style.width = "0";
-    }
-  }
+<script lang="ts" setup>
+function openNavigation() {
+  const sidebar = document.getElementById("side-navigation");
+  if(sidebar) sidebar.style.width = "100%";
+}
+function closeNavigation() {
+  const sidebar = document.getElementById("side-navigation");
+  if(sidebar) sidebar.style.width = "0";
 }
 </script>
 

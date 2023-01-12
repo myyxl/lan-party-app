@@ -2,7 +2,8 @@
   <PageHeader text="Einkäufe" />
 </template>
 
-
-<style scoped>
-
-</style>
+<script setup lang="ts">
+definePageMeta({
+  middleware: ['authenticated']
+})
+</script>

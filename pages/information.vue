@@ -5,5 +5,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['authenticated']
+})
 const { data: info } = await useFetch('/api/lan/info');
 </script>

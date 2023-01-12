@@ -9,6 +9,12 @@
   <DebtList />
 </template>
 
+<script setup lang="ts">
+definePageMeta({
+  middleware: ['authenticated']
+})
+</script>
+
 <style scoped>
 .list {
   width: 90%;

@@ -8,12 +8,14 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "nuxt": "3.0.0"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.0",
     "@types/pg": "^8.6.6",
-    "jsonwebtoken": "^9.0.0",
+    "jose": "^4.11.2",
     "pg": "^8.8.0"
   }
 }

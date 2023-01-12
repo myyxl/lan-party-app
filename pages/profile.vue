@@ -2,6 +2,8 @@
   <PageHeader text="Profil" />
 </template>
 
-<style scoped>
-
-</style>
+<script setup lang="ts">
+definePageMeta({
+  middleware: ['authenticated']
+})
+</script>

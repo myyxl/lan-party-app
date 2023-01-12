@@ -1,9 +1,9 @@
 <template>
   <div class="login-page">
     <div class="header">LAN PARTY 2023</div>
-    <input class="input-field" type="text" placeholder="Benutzername" />
-    <input class="input-field" type="password" placeholder="Passwort" />
-    <button class="login-button">Login</button>
+    <input v-model="username" class="input-field" type="text" placeholder="Benutzername" />
+    <input v-model="password" class="input-field" type="password" placeholder="Passwort" />
+    <button class="login-button" @click="login()">Login</button>
   </div>
 </template>
 
@@ -11,6 +11,17 @@
 definePageMeta({
   layout: 'empty'
 })
+const username = useState('username');
+const password = useState('password');
+function login() {
+  $fetch('/api/auth/login', {
+    method: 'POST',
+    body: {
+      username: username.value,
+      password: password.value
+    }
+  });
+}
 </script>
 
 <style scoped>
