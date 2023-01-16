@@ -9,18 +9,21 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'empty'
+  layout: 'empty',
 })
-const username = useState('username');
-const password = useState('password');
-function login() {
-  $fetch('/api/auth/login', {
+const username = ref('username');
+const password = ref('password');
+async function login() {
+  await $fetch('/api/auth/login', {
     method: 'POST',
     body: {
       username: username.value,
       password: password.value
     }
   });
+  username.value = '';
+  password.value = '';
+  await navigateTo('/');
 }
 </script>
 

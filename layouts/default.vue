@@ -20,7 +20,7 @@
       <NuxtLink to="/profile" @click="closeNavigation()">Profil</NuxtLink>
     </div>
     <div class="navigation-item logout">
-      <NuxtLink to="/api/auth/logout">Logout</NuxtLink>
+      <a @click="logout()">Logout</a>
     </div>
   </div>
   <div class="menu-icon-container">
@@ -40,6 +40,11 @@ function openNavigation() {
 function closeNavigation() {
   const sidebar = document.getElementById("side-navigation");
   if(sidebar) sidebar.style.width = "0";
+}
+async function logout() {
+  const token = useCookie('auth');
+  token.value = null;
+  await navigateTo('/login');
 }
 </script>
 

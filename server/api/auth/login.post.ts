@@ -15,4 +15,4 @@ export default defineEventHandler(async (event) => {
         .sign(new TextEncoder().encode('secret'))
     setCookie(event, 'auth', token);
     return {}
-})
+});

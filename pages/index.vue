@@ -1,6 +1,6 @@
 <template>
-  <ProfileInformation />
-  <SmallInvoiceList />
+    <ProfileInformation />
+    <SmallInvoiceList />
 </template>
 
 <script setup lang="ts">

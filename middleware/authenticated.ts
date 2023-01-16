@@ -1,4 +1,3 @@
-import {navigateTo} from "#app";
 import {jwtVerify } from 'jose';
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
