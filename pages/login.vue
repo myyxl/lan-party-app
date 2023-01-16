@@ -11,8 +11,8 @@
 definePageMeta({
   layout: 'empty',
 })
-const username = ref('username');
-const password = ref('password');
+const username = useState('username');
+const password = useState('password');
 async function login() {
   await $fetch('/api/auth/login', {
     method: 'POST',

@@ -1,10 +1,11 @@
 import {EventHandler} from "h3";
 import { jwtVerify } from "jose";
+import pgk from 'pg';
 
 export enum Role {
-    Admin,
-    Shopper,
-    User
+    ADMIN,
+    SHOPPER,
+    USER
 }
 
 export interface JWTData {
@@ -19,21 +20,21 @@ export function defineAuthorizedEventHandler<T>(eventRole: Role, handler: EventH
             const { payload } = await jwtVerify(jwtToken, new TextEncoder().encode('secret'));
             const userRole = payload.role;
             switch (eventRole) {
-                case Role.Admin:
-                    if (userRole !== Role.Admin) throw createError({statusCode: 403});
+                case Role.ADMIN:
+                    if (userRole !== 'ADMIN') throw createError({statusCode: 403});
                     break;
-                case Role.Shopper:
-                    if (userRole !== Role.Shopper && userRole !== Role.Admin) throw createError({statusCode: 403});
+                case Role.SHOPPER:
+                    if (userRole !== 'SHOPPER' && userRole !== 'ADMIN') throw createError({statusCode: 403});
                     break;
-                case Role.User:
-                    if (userRole !== Role.Shopper && userRole !== Role.Admin && userRole !== Role.User) throw createError({statusCode: 403});
+                case Role.USER:
+                    if (userRole !== 'SHOPPER' && userRole !== 'ADMIN' && userRole !== 'USER') throw createError({statusCode: 403});
                     break;
                 default:
                     throw createError({statusCode: 403})
             }
             event.context.session = payload;
         } catch (_) {
-            throw createError({statusCode: 403});
+            throw createError({statusCode: 401});
         }
         return handler(event) as T
     });

@@ -1,10 +1,12 @@
-import {defineAuthorizedEventHandler, Role} from "~/server/auth/authorization";
+import {defineAuthorizedEventHandler, Role} from "~/server/handlers/authorization";
 
 interface InfoRequest {
-    date: string,
-    city: string
+    startDate: string,
+    endDate: string,
+    city: string,
+    address: string
 }
 
-export default defineAuthorizedEventHandler(Role.Admin, (event) => {
+export default defineAuthorizedEventHandler(Role.ADMIN, (event) => {
 
 });

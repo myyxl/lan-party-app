@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "export PGPASSWORD=root; export PGUSER=postgres; export PGDATABASE=postgres; nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -13,8 +13,10 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.0",
     "@types/pg": "^8.6.6",
+    "bcrypt": "^5.1.0",
     "jose": "^4.11.2",
     "pg": "^8.8.0"
   }
