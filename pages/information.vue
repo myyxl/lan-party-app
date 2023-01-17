@@ -8,5 +8,5 @@
 definePageMeta({
   middleware: ['authenticated']
 })
-const { data: info } = await useFetch('/api/lan/info');
+const { data: info } = await useAuthorizedFetch('/api/lan/info');
 </script>

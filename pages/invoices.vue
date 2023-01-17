@@ -1,21 +1,27 @@
 <template>
   <PageHeader text="Offene Rechnungen" />
-  <div class="list">
-    <InvoiceItem title="Einkauf vom 05.01.2023" created-by="Milosz" type="Einkauf" :amount="9.99" />
-    <InvoiceItem title="Einkauf vom 06.01.2023" created-by="Milosz" type="Einkauf" :amount="24.85" />
-    <InvoiceItem title="Kinderstuhl" created-by="David" :amount="50" />
-    <InvoiceItem title="1. Rate" created-by="David" type="Miete" :amount="200" />
+  <div class="no-invoices" v-if="!invoices.length">Du hast noch keine offene Rechnungen</div>
+  <div class="list" v-for="invoice in invoices">
+    <InvoiceItem :title=invoice.title :created-by=invoice.created_by :amount=invoice.amount />
   </div>
-  <DebtList />
+  <DebtList v-if="invoices.length" />
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: ['authenticated']
 })
+const { data: invoices } = await useAuthorizedFetch('/api/invoice/list')
 </script>
 
 <style scoped>
+.no-invoices {
+  margin-top: 50%;
+  font-size: 1.2em;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+}
 .list {
   width: 90%;
   margin-bottom: 20px;

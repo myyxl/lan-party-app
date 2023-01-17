@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-const {data: profile } = await useFetch('/api/me');
+const { data: profile } = await useAuthorizedFetch('/api/me');
 </script>
 
 <style scoped>

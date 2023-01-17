@@ -19,14 +19,14 @@ CREATE TABLE lan (
     address VARCHAR(50)
 );
 
-CREATE TABLE invoice (
+CREATE TABLE invoices (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     payer varchar REFERENCES users (username) ON DELETE SET NULL,
     receiver varchar REFERENCES users (username) ON DELETE SET NULL,
     created_by varchar REFERENCES users (username) ON DELETE SET NULL,
     title VARCHAR(50) NOT NULL,
-    invoice_type invoice_type NOT NULL DEFAULT 'OTHER',
-    amount INTEGER NOT NULL,
+    invoice_type invoice_type DEFAULT 'OTHER',
+    amount DECIMAL NOT NULL,
     paid BOOLEAN DEFAULT false
 );
 
