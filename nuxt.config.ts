@@ -5,5 +5,8 @@ export default defineNuxtConfig({
             path: '~/components',
             pathPrefix: false
         }
-    ]
+    ],
+    runtimeConfig: {
+        databaseConnection: 'postgres://postgres:root@localhost:5432/postgres'
+    }
 })

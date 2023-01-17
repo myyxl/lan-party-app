@@ -1,6 +1,6 @@
 import { SignJWT } from "jose";
 import  bcrypt from "bcrypt";
-import {select, where} from "~/server/db/databasewrapper";
+import {User} from "~/server/database/model/User";
 
 interface LoginRequest {
     username: string,
@@ -13,11 +13,11 @@ interface DatabaseRow {
 }
 export default defineEventHandler(async (event) => {
     const body = await readBody(event) as LoginRequest;
-    const rows = await select<DatabaseRow>('users', ['password_hash', 'role'], where(['username'], [body.username]));
-    if(rows.length !== 1) throw createError({ statusCode: 500 });
-    const hash = rows[0].password_hash as string;
-    const role = rows[0].role as string;
-    const match = await bcrypt.compare(body.password, hash);
+    const { role, password_hash } = await User.findByPk(body.username, {
+        rejectOnEmpty: true,
+        attributes: ['password_hash', 'role']
+    });
+    const match = await bcrypt.compare(body.password, password_hash);
     if (!match) throw createError({statusCode: 400});
     const token = await new SignJWT({
         username: body.username,

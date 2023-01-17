@@ -7,7 +7,7 @@ CREATE TYPE invoice_type AS ENUM ('SHOPPING', 'RENT', 'OTHER');
 
 CREATE TABLE users (
     username VARCHAR(15) PRIMARY KEY NOT NULL,
-    displayname VARCHAR(15) NOT NULL,
+    display_name VARCHAR(15) NOT NULL,
     role user_role DEFAULT 'USER',
     password_hash CHAR(60) NOT NULL
 );
