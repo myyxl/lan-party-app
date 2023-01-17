@@ -7,10 +7,6 @@ interface LoginRequest {
     password: string
 }
 
-interface DatabaseRow {
-    password_hash: string,
-    role: string,
-}
 export default defineEventHandler(async (event) => {
     const body = await readBody(event) as LoginRequest;
     const { role, password_hash } = await User.findByPk(body.username, {
