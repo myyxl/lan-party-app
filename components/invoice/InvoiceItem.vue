@@ -2,7 +2,7 @@
   <article>
     <h5>{{ title }}</h5>
     <p>Erstellt von {{ createdBy }}</p>
-    <p class="amount">{{ amount }}</p>
+    <p class="amount">{{ amount }} €</p>
   </article>
 </template>
 
