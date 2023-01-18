@@ -1,14 +1,20 @@
 <template>
-  <PageHeader text="Profil" />
+  <main>
+    <PageHeader text="Profil" />
+    <ProfileInformation />
+  </main>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
   middleware: ['authenticated']
 })
-async function logout() {
-  const token = useCookie('auth');
-  token.value = null;
-  await navigateTo('/login');
-}
 </script>
+
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

@@ -1,10 +1,9 @@
 <template>
-  <div class="box">
-    <div class="title">{{ title }}</div>
-    <div class="type">{{ type }}</div>
-    <div class="created-by">Erstellt von {{ createdBy }}</div>
-    <div class="amount">{{ amount }} €</div>
-  </div>
+  <article>
+    <h5>{{ title }}</h5>
+    <p>Erstellt von {{ createdBy }}</p>
+    <p class="amount">{{ amount }}</p>
+  </article>
 </template>
 
 <script lang="ts">
@@ -20,33 +19,23 @@ export default {
 </script>
 
 <style scoped>
-.box {
-  border-radius: 10px;
-  width: 90%;
-  background-color: #191919;
-  box-shadow: 0 0 2px #6f7a83;
-  display: flex;
-  flex-direction: column;
+article p {
+  width: 100%;
 }
-.title {
-  padding: 2%;
-  width: 96%;
-  border-bottom: 1px solid #404040;
-  align-self: flex-start;
+article {
+  max-width: 85%;
+  width: 600px;
+  margin-bottom: 0;
 }
-.type {
-  padding-top: 2%;
-  padding-left: 2%;
+h5 {
+  margin: 0;
 }
-.created-by {
-  padding-left: 2%;
+p {
+  margin: 0;
 }
 .amount {
-  padding: 2%;
-  align-self: flex-end;
-  margin-top: auto;
   font-weight: bold;
   color: #68b668;
+  text-align: right;
 }
-
 </style>
