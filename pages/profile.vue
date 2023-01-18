@@ -6,4 +6,9 @@
 definePageMeta({
   middleware: ['authenticated']
 })
+async function logout() {
+  const token = useCookie('auth');
+  token.value = null;
+  await navigateTo('/login');
+}
 </script>

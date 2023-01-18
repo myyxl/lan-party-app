@@ -1,116 +1,48 @@
 <template>
-  <div id="side-navigation" class="side-navigation">
-    <span class="material-symbols-outlined" @click="closeNavigation()">close</span>
-    <div class="navigation-item">
-      <NuxtLink to="/" @click="closeNavigation()">Startseite</NuxtLink>
-    </div>
-    <div class="navigation-item">
-      <NuxtLink to="/information" @click="closeNavigation()">Informationen</NuxtLink>
-    </div>
-    <div class="navigation-item">
-      <NuxtLink to="/invoices" @click="closeNavigation()">Rechnungen</NuxtLink>
-    </div>
-    <div class="navigation-item">
-      <NuxtLink to="/shopping" @click="closeNavigation()">Einkäufe</NuxtLink>
-    </div>
-    <div class="navigation-item">
-      <NuxtLink to="/games" @click="closeNavigation()">Spiele</NuxtLink>
-    </div>
-    <div class="navigation-item settings">
-      <NuxtLink to="/profile" @click="closeNavigation()">Profil</NuxtLink>
-    </div>
-    <div class="navigation-item logout">
-      <a @click="logout()">Logout</a>
-    </div>
-  </div>
-  <div class="menu-icon-container">
-    <div class="header">LAN PARTY 2023</div>
-    <span class="material-symbols-outlined" @click="openNavigation()">menu</span>
-  </div>
-  <div class="page">
+  <main>
+    <h1>LAN PARTY 2023</h1>
     <NuxtPage />
-  </div>
+    <footer>
+      <NuxtLink to="/information">
+        <span class="material-symbols-outlined">info</span>
+      </NuxtLink>
+      <NuxtLink to="/invoices">
+        <span class="material-symbols-outlined">receipt_long</span>
+      </NuxtLink>
+      <NuxtLink to="/">
+        <span class="material-symbols-outlined">home</span>
+      </NuxtLink>
+      <NuxtLink to="/shopping">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </NuxtLink>
+      <NuxtLink to="/profile">
+        <span class="material-symbols-outlined">account_circle</span>
+      </NuxtLink>
+    </footer>
+  </main>
 </template>
-
-<script lang="ts" setup>
-function openNavigation() {
-  const sidebar = document.getElementById("side-navigation");
-  if(sidebar) sidebar.style.width = "100%";
-}
-function closeNavigation() {
-  const sidebar = document.getElementById("side-navigation");
-  if(sidebar) sidebar.style.width = "0";
-}
-async function logout() {
-  const token = useCookie('auth');
-  token.value = null;
-  await navigateTo('/login');
-}
-</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
-.side-navigation {
-  overflow-x: hidden;
-  color: white;
+main {
+  display: flex;
+  flex-direction: column-reverse;
+}
+h1 {
+  margin-top: 3%;
+  text-align: center;
+}
+footer {
   position: fixed;
-  height: 100%;
-  width: 0;
-  background-color: #121212;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: 0.5s;
-}
-.side-navigation span {
-  font-size: 2.5em;
-  align-self: flex-end;
-  padding: 2vw;
-}
-.menu-icon-container {
-  color: white;
-  font-family: 'Quicksand', sans-serif;
-  height: 8vh;
   width: 100%;
+  top: auto;
+  bottom: 0;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: start;
-  align-items: center;
-  font-weight: bold;
+  justify-content: space-around;
+  border-top: 2px solid;
 }
-.menu-icon-container span {
-  margin-top: 0.5vh;
-  font-size: 2.5em;
-  margin-left: 3vw;
-}
-.navigation-item {
-  margin-top: 3vh;
-}
-.navigation-item a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1.5em;
-}
-.settings {
-  margin-top: auto;
-}
-.logout {
-  margin-bottom: 7vh;
-}
-.header {
-  margin-left: 8vw;
-  font-size: 1.8em;
-}
-.page {
-  font-family: 'Quicksand', sans-serif;
-  color: white;
-  height: 88%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+footer span {
+  font-size: 3em;
+  padding: 5px;
 }
 </style>
