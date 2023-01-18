@@ -1,5 +1,5 @@
 <template>
-  <div class="header">{{ text }}</div>
+  <h3>{{ text }}</h3>
 </template>
 
 <script lang="ts">
@@ -11,10 +11,8 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  margin-top: 5%;
-  margin-bottom: 5%;
-  font-size: 1.5em;
-  font-family: 'Quicksand', sans-serif;
+h3 {
+  margin-top: -50px;
+  text-align: center;
 }
 </style>

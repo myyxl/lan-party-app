@@ -1,10 +1,11 @@
 <template>
-  <PageHeader text="Offene Rechnungen" />
-  <div class="no-invoices" v-if="!invoices.length">Du hast noch keine offene Rechnungen</div>
-  <div class="list" v-for="invoice in invoices">
-    <InvoiceItem :title=invoice.title :created-by=invoice.created_by :amount=invoice.amount />
-  </div>
-  <DebtList v-if="invoices.length" />
+  <main>
+    <PageHeader text="Offene Rechnungen" />
+    <h5 v-if="!invoices.length">Du hast noch keine offene Rechnungen</h5>
+    <div class="list" v-for="invoice in invoices">
+      <InvoiceItem :title=invoice.title :created-by=invoice.created_by :amount=invoice.amount />
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -15,19 +16,20 @@ const { data: invoices } = await useAuthorizedFetch('/api/invoice/list')
 </script>
 
 <style scoped>
-.no-invoices {
-  margin-top: 50%;
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+h5 {
+  margin-top: 100px;
   font-size: 1.2em;
-  margin-left: 5%;
-  margin-right: 5%;
+  padding: 20px;
   text-align: center;
 }
 .list {
-  width: 90%;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 }
 </style>
