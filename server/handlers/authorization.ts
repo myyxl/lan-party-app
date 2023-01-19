@@ -8,11 +8,6 @@ export enum Role {
     USER
 }
 
-export interface JWTData {
-    username: string,
-    role: Role
-}
-
 export function defineAuthorizedEventHandler<T>(eventRole: Role, handler: EventHandler<T>): EventHandler<T> {
     return defineEventHandler(async (event): Promise<T> => {
         const jwtToken = getCookie(event, 'auth') || '';
@@ -38,4 +33,11 @@ export function defineAuthorizedEventHandler<T>(eventRole: Role, handler: EventH
         }
         return handler(event) as T
     });
+}
+
+export function hasAdminPermission(userRole: Role | string): boolean {
+    return true
+}
+export function hasShopperPermission(userRole: Role | string): boolean {
+    return true
 }

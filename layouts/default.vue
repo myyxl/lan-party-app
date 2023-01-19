@@ -1,50 +1,62 @@
 <template>
+  <h1>LAN PARTY 2023</h1>
   <main>
-    <h1>LAN PARTY 2023</h1>
-    <NuxtPage />
-    <footer>
-      <NuxtLink to="/information" active-class="selected">
-        <span class="material-symbols-outlined">info</span>
-      </NuxtLink>
-      <NuxtLink to="/invoices" active-class="selected">
-        <span class="material-symbols-outlined">receipt_long</span>
-      </NuxtLink>
-      <NuxtLink to="/" active-class="selected">
-        <span class="material-symbols-outlined">home</span>
-      </NuxtLink>
-      <NuxtLink to="/shopping" active-class="selected">
-        <span class="material-symbols-outlined">shopping_cart</span>
-      </NuxtLink>
-      <NuxtLink to="/profile" active-class="selected">
-        <span class="material-symbols-outlined">account_circle</span>
-      </NuxtLink>
-    </footer>
+    <article>
+      <aside>
+        <nav>
+          <div><NuxtLink to="/">Startseite</NuxtLink></div>
+          <div><NuxtLink to="/information/view">Informationen</NuxtLink></div>
+          <div><NuxtLink to="/invoices/own">Meine Rechnungen</NuxtLink></div>
+          <div><NuxtLink to="/shopping">Einkäufe</NuxtLink></div>
+          <div><NuxtLink to="/profile">Profil</NuxtLink></div>
+          <div v-if="isAdmin" class="admin-area"><NuxtLink to="/user">Benutzer</NuxtLink></div>
+          <div v-if="isAdmin"><NuxtLink to="/invoices/all">Alle Rechnungen</NuxtLink></div>
+          <div v-if="isAdmin"><NuxtLink to="/information/edit">LAN Daten</NuxtLink></div>
+        </nav>
+      </aside>
+    </article>
+    <article class="page">
+      <NuxtPage />
+    </article>
   </main>
 </template>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
+<script setup>
+import {jwtVerify} from "jose";
+const auth = useCookie('auth').value || '';
+const { payload } = await jwtVerify(auth, new TextEncoder().encode('secret'));
+const isAdmin = payload.role === 'ADMIN';
+</script>
+
+<style>
 h1 {
   margin-top: 3%;
   text-align: center;
 }
-footer {
-  position: fixed;
-  width: 100%;
-  top: auto;
-  bottom: 0;
+main {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px
 }
-footer span {
-  font-size: 3em;
-  padding: 5px;
-  color: var(--h5-color);
+article {
+  height: 700px;
 }
-footer a:focus {
-  background-color: transparent;
+aside {
+  height: 100%;
 }
-.selected {
-  border-top: 2px solid var(--h5-color);
+nav {
+  height: 100%;
+}
+nav div {
+  margin-top: 10%;
+}
+.page {
+  width: 1000px;
+  padding: 15px 60px 60px 60px;
+  overflow-y: auto;
+}
+.admin-area {
+  margin-top: 150%;
 }
 </style>

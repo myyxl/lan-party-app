@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 h3 {
-  margin-top: -50px;
   text-align: center;
+  margin: 0;
 }
 </style>

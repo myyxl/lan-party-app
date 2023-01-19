@@ -2,7 +2,7 @@ import {defineAuthorizedEventHandler, Role} from "~/server/handlers/authorizatio
 import {Invoice} from "~/server/database/model/Invoice";
 
 export default defineAuthorizedEventHandler(Role.USER, async (event) => {
-    return await Invoice.findAll({
+    return Invoice.findAll({
         where: {
             payer: event.context.session.username,
             paid: false,

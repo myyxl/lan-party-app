@@ -1,6 +1,6 @@
 <template>
   <main>
-    <PageHeader text="Informationen" />
+    <PageHeader text="LAN Informationen" />
     <InformationEntry name="Datum" :value=info.date />
     <InformationEntry name="Ort" :value=info.city />
   </main>

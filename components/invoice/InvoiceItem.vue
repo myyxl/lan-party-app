@@ -23,9 +23,10 @@ article p {
   width: 100%;
 }
 article {
-  max-width: 85%;
-  width: 600px;
-  margin-bottom: 0;
+  padding: 15px;
+  margin: 0;
+  width: 250px;
+  height: auto;
 }
 h5 {
   margin: 0;

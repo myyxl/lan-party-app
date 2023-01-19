@@ -1,9 +1,9 @@
 <template>
   <main>
-    <PageHeader text="Offene Rechnungen" />
+    <PageHeader text="Meine Rechnungen" />
     <h5 v-if="!invoices.length">Du hast noch keine offene Rechnungen</h5>
-    <div class="list" v-for="invoice in invoices">
-      <InvoiceItem :title=invoice.title :created-by=invoice.created_by :amount=invoice.amount />
+    <div class="list">
+      <InvoiceItem v-for="invoice in invoices" :title=invoice.title :created-by=invoice.created_by :amount=invoice.amount />
     </div>
   </main>
 </template>
@@ -12,7 +12,7 @@
 definePageMeta({
   middleware: ['authenticated']
 })
-const { data: invoices } = await useAuthorizedFetch('/api/invoice/list')
+const { data: invoices } = await useAuthorizedFetch('/api/invoice/own')
 </script>
 
 <style scoped>
@@ -29,7 +29,10 @@ h5 {
 }
 .list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px 20px;
+  flex-wrap: wrap;
+  flex-grow: 1;
 }
 </style>

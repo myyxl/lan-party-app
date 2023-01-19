@@ -8,5 +8,8 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
         databaseConnection: 'postgres://postgres:root@localhost:5432/postgres'
-    }
+    },
+    modules: [
+        '@nuxtjs/device'
+    ]
 })

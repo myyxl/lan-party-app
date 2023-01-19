@@ -37,6 +37,7 @@ h1 {
   margin-top: 10%;
 }
 input {
+  margin: 0;
   width: 250px;
 }
 button {
