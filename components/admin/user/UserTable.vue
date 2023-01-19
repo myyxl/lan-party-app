@@ -13,13 +13,22 @@
       <UserTableRow v-for="user in users" :username=user.username :display-name=user.display_name :role=user.role />
     </tbody>
   </table>
+  <button>Hinzufügen</button>
 </main>
 </template>
 
 <script setup lang="ts">
-const { data: users } = useAuthorizedFetch('/api/users')
+const { data: users } = await useAuthorizedFetch('/api/users')
 </script>
 
 <style scoped>
-
+table {
+  margin: 0;
+}
+button {
+  padding: 10px;
+  margin: 0;
+  width: auto;
+  align-self: flex-end;
+}
 </style>

@@ -28,7 +28,7 @@ const { payload } = await jwtVerify(auth, new TextEncoder().encode('secret'));
 const isAdmin = payload.role === 'ADMIN';
 </script>
 
-<style>
+<style scoped>
 h1 {
   margin-top: 3%;
   text-align: center;

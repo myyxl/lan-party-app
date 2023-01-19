@@ -28,13 +28,14 @@ main {
   height: 100%;
 }
 img {
+  margin-top: 10%;
   height: 25%;
   width: auto;
   border-radius: 50%;
 }
 input {
   text-align: center;
-  margin: 0;
+  margin: 4%;
   width: 200px;
 }
 button {
@@ -43,6 +44,7 @@ button {
 }
 .save {
   margin-top: auto;
+  margin-bottom: 10px;
   align-self: flex-end;
 }
 .logout {

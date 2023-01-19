@@ -32,6 +32,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 15px;
 }
 h1 {
   margin-top: 10%;
