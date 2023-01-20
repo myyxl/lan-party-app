@@ -1,16 +1,22 @@
 <template>
   <tr>
-    <td v-if="!isEditEnabled">{{ username }}</td>
-    <td v-else><input :value=props.username></td>
+    <td>{{ username }}</td>
 
     <td v-if="!isEditEnabled">{{ displayName }}</td>
-    <td v-else><input :value=props.displayName></td>
+    <td v-else><input v-model="displayNameInput"></td>
 
     <td v-if="!isEditEnabled">{{ role }}</td>
-    <td v-else><input :value=props.role></td>
+    <td v-else>
+      <select v-model="roleInput">
+        <option value="ADMIN" :selected="role === 'ADMIN'">Admin</option>
+        <option value="SHOPPER" :selected="role === 'SHOPPER'">Einkäufer</option>
+        <option value="USER" :selected="role === 'USER'">Benutzer</option>
+      </select>
+    </td>
     <td>
       <div class="actions" v-if="!isEditEnabled">
         <button @click="toggleEdit"><span class="material-symbols-outlined">edit</span></button>
+        <button><span class="material-symbols-outlined">lock_reset</span></button>
         <button class="delete" @click="deleteUser"><span class="material-symbols-outlined">delete</span></button>
       </div>
       <div v-else>
@@ -18,6 +24,7 @@
       </div>
     </td>
   </tr>
+  <CreateUserModal />
 </template>
 
 <script setup lang="ts">
@@ -26,7 +33,9 @@ const props = defineProps<{
     displayName: string,
     role: string
 }>()
-const isEditEnabled = useState(`is-edit-enabled-${props.username}`, () => false);
+const isEditEnabled = ref(false);
+const displayNameInput = ref(props.displayName);
+const roleInput = ref(props.role);
 
 async function deleteUser() {
   await useAuthorizedFetch('/api/users', {
@@ -42,8 +51,15 @@ function toggleEdit() {
   isEditEnabled.value = !isEditEnabled.value;
 }
 
-function saveUser() {
-  // TODO: Implement save request (API is missing)
+async function saveUser() {
+  await useAuthorizedFetch('/api/users', {
+    method: 'POST',
+    body: {
+      username: props.username,
+      newDisplayName: displayNameInput.value,
+      newRole: roleInput.value
+    }
+  })
   toggleEdit()
 }
 
@@ -66,6 +82,9 @@ button {
 }
 input {
   width: 150px;
+  margin: 0;
+}
+select {
   margin: 0;
 }
 </style>
